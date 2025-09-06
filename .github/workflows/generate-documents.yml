@@ -36,7 +36,7 @@ jobs:
           --toc \
           --toc-depth=3 \
           --standalone \
-          --geometry margin=1in
+          --variable geometry:margin=1in
           
     - name: Create Release
       id: create_release
