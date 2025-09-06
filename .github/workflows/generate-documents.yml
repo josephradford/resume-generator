@@ -10,7 +10,7 @@ jobs:
   convert-documents:
     runs-on: ubuntu-latest
     container:
-      image: pandoc/latex:3.1.11
+      image: pandoc/latex:latest
     
     steps:
     - name: Checkout repository
