@@ -1,0 +1,88 @@
+name: Generate Portfolio Documents
+
+on:
+  push:
+    branches: [ main, master ]
+    paths: [ 'portfolio.md' ]
+  workflow_dispatch:
+
+jobs:
+  convert-documents:
+    runs-on: ubuntu-latest
+    container:
+      image: pandoc/latex:3.1.11
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Convert to DOCX
+      run: |
+        pandoc portfolio.md \
+          --from markdown \
+          --to docx \
+          --output portfolio.docx \
+          --toc \
+          --toc-depth=3 \
+          --standalone
+          
+    - name: Convert to PDF
+      run: |
+        pandoc portfolio.md \
+          --from markdown \
+          --to pdf \
+          --output portfolio.pdf \
+          --pdf-engine=xelatex \
+          --toc \
+          --toc-depth=3 \
+          --standalone \
+          --geometry margin=1in
+          
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: portfolio-${{ github.run_number }}
+        release_name: Portfolio Documents - Run ${{ github.run_number }}
+        body: |
+          Auto-generated portfolio documents from latest changes.
+          
+          **Changes in this release:**
+          ${{ github.event.head_commit.message }}
+          
+          **Download formats:**
+          - Word Document (DOCX)
+          - PDF Document
+        draft: false
+        prerelease: false
+        
+    - name: Upload DOCX to Release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./portfolio.docx
+        asset_name: portfolio.docx
+        asset_content_type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+        
+    - name: Upload PDF to Release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./portfolio.pdf
+        asset_name: portfolio.pdf
+        asset_content_type: application/pdf
+        
+    - name: Upload artifacts for download
+      uses: actions/upload-artifact@v4
+      with:
+        name: portfolio-documents
+        path: |
+          portfolio.docx
+          portfolio.pdf
+        retention-days: 30
