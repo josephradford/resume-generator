@@ -1,14 +1,13 @@
-# Use ubuntu as base and install pandoc + texlive for better platform support
-FROM ubuntu:22.04
+# Use debian slim with faster package installation
+FROM debian:bullseye-slim
 
-# Install pandoc, texlive, and xelatex
-RUN apt-get update && apt-get install -y \
+# Install pandoc and minimal tex packages
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     pandoc \
     texlive-latex-base \
-    texlive-latex-recommended \
-    texlive-latex-extra \
     texlive-xetex \
     texlive-fonts-recommended \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
