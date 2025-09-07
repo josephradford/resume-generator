@@ -39,7 +39,7 @@ for md_file in $md_files; do
         exit 1
     fi
     
-    # Convert to PDF
+    # Convert to PDF with compact formatting
     echo "📑 Converting to PDF..."
     pandoc "$md_file" \
         --from markdown \
@@ -47,7 +47,11 @@ for md_file in $md_files; do
         --output "$dirname/$basename.pdf" \
         --pdf-engine=xelatex \
         --standalone \
-        --variable geometry:margin=1in
+        --variable geometry:margin=0.75in \
+        --variable fontsize=11pt \
+        --variable linestretch=1.0 \
+        --variable parskip=0.5em \
+        --variable parindent=0pt
     
     if [ $? -eq 0 ]; then
         echo "✅ PDF generated: $dirname/$basename.pdf"
