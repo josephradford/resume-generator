@@ -1,10 +1,11 @@
 # Use debian slim with faster package installation
 FROM debian:bullseye-slim
 
-# Install pandoc and minimal tex packages
+# Install pandoc and necessary tex packages
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     pandoc \
     texlive-latex-base \
+    texlive-latex-recommended \
     texlive-xetex \
     texlive-fonts-recommended \
     && apt-get clean \
