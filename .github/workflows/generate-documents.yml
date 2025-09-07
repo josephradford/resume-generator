@@ -12,30 +12,16 @@ permissions:
 jobs:
   convert-documents:
     runs-on: ubuntu-latest
-    container:
-      image: pandoc/latex:latest
     
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
       
-    - name: Convert to DOCX
-      run: |
-        pandoc portfolio.md \
-          --from markdown \
-          --to docx \
-          --output portfolio.docx \
-          --standalone
-          
-    - name: Convert to PDF
-      run: |
-        pandoc portfolio.md \
-          --from markdown \
-          --to pdf \
-          --output portfolio.pdf \
-          --pdf-engine=xelatex \
-          --standalone \
-          --variable geometry:margin=1in
+    - name: Build portfolio generator Docker image
+      run: docker build -t portfolio-generator .
+      
+    - name: Generate portfolio documents
+      run: docker run --rm -v ${{ github.workspace }}:/workspace portfolio-generator
           
     - name: Create Release
       uses: softprops/action-gh-release@v2

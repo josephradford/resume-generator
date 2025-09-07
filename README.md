@@ -26,15 +26,31 @@ Automatically generates Word (DOCX) and PDF versions of your technical portfolio
 2. Replace `portfolio.md` with your portfolio content
 3. Push to GitHub - the workflow will automatically run
 
+## Local Development
+
+To generate documents locally using Docker:
+
+```bash
+# Build the Docker image
+docker build -t portfolio-generator .
+
+# Generate documents (creates portfolio.docx and portfolio.pdf)
+docker run --rm -v "$(pwd)":/workspace portfolio-generator
+```
+
+The same Docker setup is used both locally and in GitHub Actions, ensuring consistent results.
+
 ## File Structure
 
 ```
 portfolio-generator/
 ├── .github/
 │   └── workflows/
-│       └── generate-documents.yml
-├── portfolio.md              # Your portfolio content (edit this)
-└── README.md                 # This file
+│       └── generate-documents.yml  # GitHub Actions workflow
+├── Dockerfile                      # Docker image definition
+├── generate.sh                     # Document generation script
+├── portfolio.md                    # Your portfolio content (edit this)
+└── README.md                       # This file
 ```
 
 ## Download Your Documents
