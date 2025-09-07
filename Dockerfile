@@ -1,4 +1,15 @@
-FROM pandoc/latex:latest
+# Use ubuntu as base and install pandoc + texlive for better platform support
+FROM ubuntu:22.04
+
+# Install pandoc, texlive, and xelatex
+RUN apt-get update && apt-get install -y \
+    pandoc \
+    texlive-latex-base \
+    texlive-latex-recommended \
+    texlive-latex-extra \
+    texlive-xetex \
+    texlive-fonts-recommended \
+    && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
 WORKDIR /workspace
