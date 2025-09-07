@@ -14,9 +14,5 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 # Set working directory
 WORKDIR /workspace
 
-# Copy the entrypoint script
-COPY generate.sh /usr/local/bin/generate.sh
-RUN chmod +x /usr/local/bin/generate.sh
-
-# Set the entrypoint
-ENTRYPOINT ["/usr/local/bin/generate.sh"]
+# Set the entrypoint to run the script from the mounted volume
+ENTRYPOINT ["/bin/bash", "/workspace/generate.sh"]
