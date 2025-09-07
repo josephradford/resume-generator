@@ -3,7 +3,7 @@ name: Generate Portfolio Documents
 on:
   push:
     branches: [ main, master ]
-    paths: [ 'portfolio.md' ]
+    paths: [ '*.md' ]
   workflow_dispatch:
 
 permissions:
@@ -38,8 +38,8 @@ jobs:
           - Word Document (DOCX)
           - PDF Document
         files: |
-          portfolio.docx
-          portfolio.pdf
+          *.docx
+          *.pdf
         draft: false
         prerelease: false
         
@@ -48,6 +48,6 @@ jobs:
       with:
         name: portfolio-documents
         path: |
-          portfolio.docx
-          portfolio.pdf
+          *.docx
+          *.pdf
         retention-days: 30
