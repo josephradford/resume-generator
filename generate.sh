@@ -30,7 +30,8 @@ for md_file in $md_files; do
         --from markdown \
         --to docx \
         --output "$dirname/$basename.docx" \
-        --standalone
+        --standalone \
+        --variable papersize=a4
     
     if [ $? -eq 0 ]; then
         echo "✅ DOCX generated: $dirname/$basename.docx"
@@ -47,11 +48,13 @@ for md_file in $md_files; do
         --output "$dirname/$basename.pdf" \
         --pdf-engine=xelatex \
         --standalone \
-        --variable geometry:margin=0.75in \
-        --variable fontsize=11pt \
+        --variable papersize=a4 \
+        --variable geometry:margin=0.6in \
+        --variable fontsize=10pt \
         --variable linestretch=1.0 \
-        --variable parskip=0.5em \
-        --variable parindent=0pt
+        --variable parskip=0.0em \
+        --variable parindent=0pt \
+        --variable pagestyle=empty
     
     if [ $? -eq 0 ]; then
         echo "✅ PDF generated: $dirname/$basename.pdf"
