@@ -80,7 +80,7 @@ Joseph Radford, Liyuan Wang, Jingjing Li, Bryan Coad, Clive McFarland, and Rober
 
 ## Employment
 
-### 1. Team Leader, Application Software; Saluda Medical Sydney; August 2020 – May 2025
+### Team Leader, Application Software; Saluda Medical Sydney; August 2020 – May 2025
 
 I was promoted to this role after demonstrating leadership at the start of the Clarity® Programming Application v2.0 project. My responsibilities across all projects in this position included:
 
@@ -180,7 +180,7 @@ I was promoted to this role after demonstrating leadership at the start of the C
 - Designed to support new hardware and firmware while maintaining backwards compatibility to old stimulators.
 - Worked with the Legal and Clinical teams discussing patents of competitors to ensure that the application had intellectual property (IP) compliance.
 
-### 2. Software Engineer; Saluda Medical Sydney; April 2018 – August 2020
+### Software Engineer; Saluda Medical Sydney; April 2018 – August 2020
 
 #### 9. Clinical Programming Application 1.48.5; 2018 – 2019
 
@@ -199,7 +199,7 @@ I was promoted to this role after demonstrating leadership at the start of the C
 - Designed manual test protocols from requirements; improved test efficiency by developing utilities on Python.
 - Documented design and testing for Pre-Market Approval with the FDA.
 
-### 3. Electronic Design Engineer; Dosec Design Sydney, 2012 – 2018
+### Electronic Design Engineer; Dosec Design Sydney, 2012 – 2018
 
 #### 11. EnviroNode Hub, Data Server and Client 2015 – 2018
 
